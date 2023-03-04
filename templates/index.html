@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Coverage report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.css"
+        integrity="sha256-Ez4TnBJ24JkU8Z622YHGxDaYrslkqNZ62ewvn08Skco=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table td,
+        .table th {
+            vertical-align: middle;
+        }
+
+        .progress {
+            border-radius: 0;
+            height: 16px;
+        }
+
+        .card-body {
+            padding: 0;
+        }
+
+        th {
+            min-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card my-4">
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">File</th>
+                            <th scope="col">Coverage</th>
+                            <th scope="col"></th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in files %}
+                        <tr>
+                            <th scope="row"><a href="{{file.report_path}}">{{file.source_path}}</a></th>
+                            <td>
+                                <div class="progress">
+                                    {% if file.lines_covered_per >= 90.0 -%}
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{file.lines_covered_per}}%"
+                                        aria-valuenow="{{file.lines_covered_per}}" aria-valuemin="0"
+                                        aria-valuemax="100">{{file.lines_covered_per}}%</div>
+                                    {% else if file.lines_covered_per >= 70.0-%}
+                                    <div class="progress-bar bg-warning" role="progressbar"
+                                        style="width: {{file.lines_covered_per}}%"
+                                        aria-valuenow="{{file.lines_covered_per}}" aria-valuemin="0"
+                                        aria-valuemax="100">{{file.lines_covered_per}}%</div>
+                                    {% else -%}
+                                    <div class="progress-bar bg-danger" role="progressbar"
+                                        style="width: {{file.lines_covered_per}}%"
+                                        aria-valuenow="{{file.lines_covered_per}}" aria-valuemin="0"
+                                        aria-valuemax="100">{{file.lines_covered_per}}%</div>
+                                    {% endif -%}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.js"
+        integrity="sha256-zW3RviTWD2qcjPDA/ByugxSFO5EPHb8Yl0Z6o7X9Zqk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+name: lcov-html
+version: "1.0"
+author: Nish Tahir <nishtahir@outlook.com>
+about: Generate HTML from lcov coverage files
+args:
+  - verbose:
+      short: v
+      long: verbose
+      multiple: true
+      about: Sets the level of verbosity
+  - file:
+      min_values: 1
+      about: LCOV files to parse
+  - output:
+      short: o
+      long: output
+      max_values: 1
+      about: Location to output the generated HTML
+  - source:
+      short: s
+      long: source
+      max_values: 1
+      about: Source dir root
